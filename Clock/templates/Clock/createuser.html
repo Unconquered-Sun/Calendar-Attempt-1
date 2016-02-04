@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	
+	<form action="/createuser/?token={{token}}" method="post">
+		{% csrf_token %}
+		{{ forms.as_p }}
+		<input type="hidden" name="token" value="{{token}}" />
+		<input type="submit" value="Submit" />
+	</form>
+</body>
+</html>

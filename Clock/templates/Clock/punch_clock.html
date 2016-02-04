@@ -1,0 +1,58 @@
+{%load staticfiles%}
+<html>
+<head>
+	<title>Punch Clock</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="{%static "Clock/clockin.js"%}"></script>
+	<script>
+	$(function() {
+		$( ".datepicker" ).datepicker();
+	});
+	$(function(){
+		var minutes_list = ["00","15","30","45"]
+		for( var hour = 1; hour<13; hour++){
+			for( var minute=0; minute<4;minute++){
+				$("#start_time").append( "<option value="+hour+":"+minutes_list[minute]+">"+hour+":"+minutes_list[minute]+"</option>" )
+				$("#end_time").append( "<option value="+hour+":"+minutes_list[minute]+">"+hour+":"+minutes_list[minute]+"</option>" )
+			}
+		}
+	})
+	</script>
+</head>
+<body>
+	<div id="errormessage"></div>
+	<form id="dateselector" action="/" method="POST">
+		<div id="startdiv">
+			<p>Start Date: <input type="text" id="start_date" class="datepicker"></p>
+		</div>
+		<div id="enddiv">
+			<p>End Date: <input type="text" id="end_date" class="datepicker"></p>
+		</div>
+		<div id="start_time_div">
+			<p>
+				Punch In Time:<br>
+				<select id="start_time"></select>
+				<select id="start_AM">
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
+				</select>
+			</p>
+		</div>
+		<div id="end_time_div">
+			<p>
+				Punch Out Time:<br>
+				<select id="end_time"></select>
+				<select id="end_AM">
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
+				</select>
+			</p>
+		</div><br>
+		<input type="submit" value="Submit" />
+	</form>
+
+</body>
+</html>
